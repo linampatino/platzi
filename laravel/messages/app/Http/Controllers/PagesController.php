@@ -9,19 +9,9 @@ use App\Message;
 class PagesController extends Controller
 {
     //
-    public function home(){
-        
-        $messages = Message::all();
+    public function home(){  
+        $messages = Message::paginate(10);
         return view('welcome', ['messages' => $messages]);
-        
-        /*$links = [
-            'https:/laravel.com' => 'Laravel',
-            'https:/github.com' => 'GitHub',
-        ];
-        return view('welcome', [
-            'links' => $links,
-            'teacher' => 'Lina',
-        ]);*/
     }
 
     public function about(){
