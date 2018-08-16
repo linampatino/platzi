@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Message;
+use App\socialProfile;
 
 class User extends Authenticatable
 {
@@ -43,5 +44,9 @@ class User extends Authenticatable
 
     public function isFollowing($user){
         return $this->follows->contains($user);
+    }
+
+    public function socialProfile(){
+        return $this->hasMany(SocialProfile::class);
     }
 }

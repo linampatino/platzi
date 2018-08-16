@@ -14,7 +14,10 @@
 
 Route::get('/', 'PagesController@home');
 Route::get('/about', 'PagesController@about');
+
 Route::get('/messages/{message}', 'MessagesController@show');
+Route::post('/messages/create', 'MessagesController@create')->middleware('auth');
+
 
 Route::get('/users/{username}', 'UsersController@show');
 Route::get('/users/{username}/follows', 'UsersController@follows');
@@ -24,7 +27,10 @@ Route::post('/users/{username}/unfollow', 'UsersController@unfollow');
 //Route::get('/users/{username}', 'UsersController@show');
 
 
-Route::post('/messages/create', 'MessagesController@create')->middleware('auth');
 Auth::routes();
+Route::get('/auth/facebook','SocialAuthController@facebook');
+Route::get('/auth/facebook/callback','SocialAuthController@callback');
+Route::post('/auth/facebook/register','SocialAuthController@register');
+
 
 //Route::get('/home', 'HomeController@index')->name('home');
