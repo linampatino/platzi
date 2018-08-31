@@ -7,6 +7,15 @@
     <a class="btn btn-link" href="/users/{{$user->username}}/followers">Followers <span class="badge badge-default">{{ $user->followers->count() }}</span></a>
 
     @if(Auth::check())
+
+        @if(Gate::allows('dms', $user))
+            <form action="/users/{{$user->username}}/dms" method="post">
+                {{ csrf_field() }}
+                <input type="text" name="message" class="form-control">
+                <button type="submit" class="btn btn-success">Send DM</button>
+            </form>
+        @endif
+
         @if(Auth::user()->isFollowing($user))
         <form action="/users/{{$user->username}}/unfollow" method="post">
                 {{ csrf_field() }}

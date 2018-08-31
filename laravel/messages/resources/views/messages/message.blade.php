@@ -1,4 +1,4 @@
-<img class=img-thumbnail"" src="{{$message->image}}" alt="">
+<img class=img-thumbnail"" src="{{ $message->image }}" alt="">
     <p class="card-text">
     <span class="text-muted">Written by <a href="/users/{{ $message->user->username }}"> {{ $message->user->username }} </a> </span>
     {{$message->content}}

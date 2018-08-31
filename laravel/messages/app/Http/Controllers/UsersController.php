@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Conversation;
+use App\PrivateMessage;
 
 class UsersController extends Controller
 {
@@ -46,10 +48,31 @@ class UsersController extends Controller
         return redirect("/users/$username")->withSuccess("Unfollowed!!!");
     }
 
-    private function findByUsername($username){
-        $user = User::where('username', $username)->first();
-        return $user;
+    public function sendPrivateMessage($username, Request $request){
+        $user = $this->findByUsername($username);
+
+        $me = $request->user();
+        $message = $request->input('message');
+
+        $conversation = Conversation::between($me, $user);
+        //dd($conversation);
+        //$conversation = Conversation::create();
+        //$conversation->users()->attach($user);
+        //$conversation->users()->attach($me);
+
+        $privateMessage = PrivateMessage::create([
+            'conversation_id' => $conversation->id,
+            'user_id' => $me->id,
+            'message' => $message,
+        ]);
+
+        return redirect('/conversations/'.$conversation->id);
     }
 
+
+    private function findByUsername($username){
+        $user = User::where('username', $username)->firstOrFail();
+        return $user;
+    }
 
 }
