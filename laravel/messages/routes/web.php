@@ -33,9 +33,7 @@ Route::get('/users/{username}/follows', 'UsersController@follows');
 Route::get('/users/{username}/followers', 'UsersController@followers');
 
 
-
 //Route::get('/users/{username}', 'UsersController@show');
-
 
 Auth::routes();
 Route::get('/auth/facebook','SocialAuthController@facebook');

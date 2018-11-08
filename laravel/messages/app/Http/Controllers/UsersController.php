@@ -10,6 +10,7 @@ use App\PrivateMessage;
 class UsersController extends Controller
 {
     public function show($username){
+        //throw new \Exception("Simulado un error");
         $user = User::where('username', $username)->first();
         return view('users.show', [
             'user' => $user,

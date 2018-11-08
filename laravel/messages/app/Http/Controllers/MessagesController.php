@@ -29,8 +29,9 @@ class MessagesController extends Controller
     public function search(Request $request){
         $query = $request->input('query');
 
-        $messages = Message::with('user')
-                            ->where('content', 'like', "%$query%")->get();
+        $messages = Message::search($query)->get();
+        $messages->load('user');                    
+        //->where('content', 'like', "%$query%")->get();
         
         return view('messages.index', ['messages' => $messages]);
     }

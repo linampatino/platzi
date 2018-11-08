@@ -25,6 +25,10 @@ class SocialAuthController extends Controller
             auth()->login($existing);
             return redirect('/');
         }else{
+            /** 
+             * session()->flash('facebookUser', $user)
+             * Data stored in the session using this method will only be available during the subsequent HTTP request, and then will be deleted.
+             */
             session()->flash('facebookUser', $user);
             return view('users.facebook', [
                 'user' => $user,
