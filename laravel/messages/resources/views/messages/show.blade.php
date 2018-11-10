@@ -4,4 +4,6 @@
     <h1 class="h3">Message id: {{$message->id}}</h1>
      @include('messages.message')
     </p>
+
+    <responses-component :message = "{{ $message->id }}"></responses-component>
 @endsection

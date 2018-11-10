@@ -32,8 +32,7 @@ Route::get('/users/{username}', 'UsersController@show');
 Route::get('/users/{username}/follows', 'UsersController@follows');
 Route::get('/users/{username}/followers', 'UsersController@followers');
 
-
-//Route::get('/users/{username}', 'UsersController@show');
+Route::get('/api/messages/{message}/responses', 'MessagesController@responses');
 
 Auth::routes();
 Route::get('/auth/facebook','SocialAuthController@facebook');

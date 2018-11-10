@@ -38,6 +38,7 @@ class UsersController extends Controller
         $me = $request->user();
         $me->follows()->attach($user);
 
+        $user->notify(new UserFollowed($me));
         return redirect("/users/$username")->withSuccess("Followed!!!");
     }
 

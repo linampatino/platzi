@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+
 use App\User;
+use App\Response;
 
 class Message extends Model
 {
@@ -14,6 +16,10 @@ class Message extends Model
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function responses(){
+        return $this->hasMany(Response::class);
     }
     
     public function getImageAttribute($image){
@@ -27,4 +33,6 @@ class Message extends Model
         $this->load('user');
         return $this->toArray();
     }
+
+    
 }
