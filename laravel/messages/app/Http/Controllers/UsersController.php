@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Conversation;
 use App\PrivateMessage;
+use App\Notifications\UserFollowed;
 
 class UsersController extends Controller
 {

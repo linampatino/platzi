@@ -45,9 +45,11 @@ class UserFollowed extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('You have a new follower')
+                    ->greeting('Hello, '.$notifiable->name)
+                    ->line('The user @'.$this->follower->username.' is follow you.')
+                    ->action('profile', url('/users/'.$this->follower->username))
+                    ->salutation('Thank you for using our application!');
     }
 
     /**
