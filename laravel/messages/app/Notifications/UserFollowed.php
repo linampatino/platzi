@@ -61,7 +61,7 @@ class UserFollowed extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'follower' => $this->follower
         ];
     }
 }

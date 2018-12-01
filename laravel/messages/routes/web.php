@@ -22,10 +22,16 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/users/{username}/follow', 'UsersController@follow');
     Route::post('/users/{username}/unfollow', 'UsersController@unfollow');
     Route::post('/users/{username}/dms', 'UsersController@sendPrivateMessage');
-
+    
+    Route::get('/api/notifications', 'UsersController@notifications');
+    
+    
     Route::post('/messages/create', 'MessagesController@create');
 
     Route::get('/conversations/{conversation}', 'ConversationsController@showConversation');
+
+    
+    
 });
 
 Route::get('/users/{username}', 'UsersController@show');
